@@ -1,0 +1,21 @@
+name: NASA API Tests
+
+on:
+  push:
+  schedule:
+    - cron: '0 9 * * *'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Newman
+        run: npm install -g newman
+
+      - name: Run API Tests
+        run: |
+          newman run nasa-collection.json \
+            --env-var "api_key=${{ secrets.NASA_API_KEY }}" \
+            --env-var "date=1995-12-04"

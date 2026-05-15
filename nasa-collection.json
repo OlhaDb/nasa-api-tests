@@ -1,0 +1,202 @@
+{
+  "info": {
+    "_postman_id": "87b55604-e538-4a2f-bb27-fbff70dbddd7",
+    "name": "NASA API Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "5736184"
+  },
+  "item": [
+    {
+      "name": "New Request",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Тест 1: статус код 200",
+              "pm.test(\"Status is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// Тест 2: відповідь є JSON",
+              "pm.test(\"Response is JSON\", function () {",
+              "    pm.response.to.be.json;",
+              "});",
+              "",
+              "// Тест 3: поле date існує",
+              "pm.test(\"Has date field\", function () {",
+              "    const json = pm.response.json();",
+              "    pm.expect(json.date).to.exist;",
+              "});",
+              "",
+              "// Тест 4: date відповідає запитуваній",
+              "pm.test(\"Date matches request\", function () {",
+              "    const json = pm.response.json();",
+              "    pm.expect(json.date).to.eql(\"1995-12-04\");",
+              "});",
+              "",
+              "// Тест 5: media_type є image або video",
+              "pm.test(\"media_type is valid\", function () {",
+              "    const json = pm.response.json();",
+              "    pm.expect(json.media_type).to.be.oneOf([\"image\", \"video\"]);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.nasa.gov/planetary/apod?api_key={{api_key}}&date={{date}}",
+          "protocol": "https",
+          "host": [
+            "api",
+            "nasa",
+            "gov"
+          ],
+          "path": [
+            "planetary",
+            "apod"
+          ],
+          "query": [
+            {
+              "key": "api_key",
+              "value": "{{api_key}}"
+            },
+            {
+              "key": "date",
+              "value": "{{date}}"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "New Request",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.nasa.gov/planetary/apod?api_key={{api_key}}&date={{date}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "nasa",
+                "gov"
+              ],
+              "path": [
+                "planetary",
+                "apod"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                },
+                {
+                  "key": "date",
+                  "value": "{{date}}"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "date",
+              "value": "Fri, 15 May 2026 18:02:53 GMT"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "vary",
+              "value": "Accept-Encoding"
+            },
+            {
+              "key": "access-control-allow-origin",
+              "value": "*"
+            },
+            {
+              "key": "access-control-expose-headers",
+              "value": "X-RateLimit-Limit, X-RateLimit-Remaining"
+            },
+            {
+              "key": "age",
+              "value": "0"
+            },
+            {
+              "key": "referrer-policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=31536000; includeSubDomains; preload"
+            },
+            {
+              "key": "via",
+              "value": "https/1.1 api-umbrella (ApacheTrafficServer [cMsSf ])"
+            },
+            {
+              "key": "x-api-umbrella-request-id",
+              "value": "cu5j73klpbrr9tn8v5rg"
+            },
+            {
+              "key": "x-cache",
+              "value": "MISS"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-powered-by",
+              "value": "appdat"
+            },
+            {
+              "key": "x-ratelimit-limit",
+              "value": "10"
+            },
+            {
+              "key": "x-ratelimit-remaining",
+              "value": "9"
+            },
+            {
+              "key": "x-using-nginx-controller",
+              "value": "true"
+            },
+            {
+              "key": "x-vcap-request-id",
+              "value": "d1268f00-8c53-41fd-4c67-0fa6793a0816"
+            },
+            {
+              "key": "x-xss-protection",
+              "value": "1; mode=block"
+            },
+            {
+              "key": "x-frame-options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "content-encoding",
+              "value": "gzip"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"date\": \"1995-12-04\",\n    \"explanation\": \"What type of matter makes up most of the universe?  This question is arguably the most perplexing astronomical mystery of our time.  A leading candidate is a type of dim, low mass star called a \\\"brown dwarf\\\" star. Our universe could contain more brown dwarfs than any other type of star - but they are so dim they have so far escaped detection. The dramatic photograph above, taken in October 1994, sheds new light on this \\\"dark matter\\\" problem. The seemingly inconspicuous companion to the right of the overexposed image of a normal star is thought to be an elusive brown dwarf. Now that the existence of brown dwarfs has been demonstrated, a key remaining question is their abundance.\",\n    \"hdurl\": \"https://apod.nasa.gov/apod/image/gl229b_hst_big.gif\",\n    \"media_type\": \"image\",\n    \"service_version\": \"v1\",\n    \"title\": \"GL 229B: An Elusive Brown Dwarf?\",\n    \"url\": \"https://apod.nasa.gov/apod/image/gl229b_hst.gif\"\n}"
+        }
+      ]
+    }
+  ]
+}
